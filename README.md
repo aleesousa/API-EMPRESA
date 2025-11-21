@@ -24,6 +24,8 @@ API-EMPRESA/
 
 │── src/ 
 
+│ ├── docs/           (*Pasta docs contendo collection no Postman e o diagrama*)
+
 │ ├── routes/         (*Arquivos de rotas da API*)
 
 │ ├── controllers/    (*Lógica de negócio*)
@@ -36,7 +38,7 @@ API-EMPRESA/
 
 │ ├── middlewares/    (*Funções que interceptam requisições*) 
 
-│ └── index.js         (*Inicialização da aplicação*) 
+│ └── index.js        (*Inicialização da aplicação*) 
 
 │── package.json 
 
