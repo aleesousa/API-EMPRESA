@@ -1,0 +1,1353 @@
+{
+	"info": {
+		"_postman_id": "85d6e3ad-b2fa-4ec6-a118-c7a8a3fde1ed",
+		"name": "API-EMPRESA",
+		"description": "StartFragment\n\n# **API de Gestão Empresarial — Documentação Oficial**\n\nEsta collection contém todas as rotas implementadas para o sistema de Gestão Empresarial, incluindo empresas, clientes, funcionários, departamentos, unidades, serviços, contratos, faturas, pagamentos e projetos.\n\nA API foi desenvolvida em **Node.js + Express**, utilizando **MongoDB** como banco de dados e **Yup** para validação das entidades.\n\nDurante o desenvolvimento, foram identificados e corrigidos diversos pontos (acertos e erros), garantindo maior robustez e padronização das rotas. Abaixo estão listadas todas as entidades da API, cada uma organizada em sua respectiva pasta dentro da collection.\n\n## **Tecnologias Utilizadas**\n\n- Node.js\n    \n- Express\n    \n- MongoDB\n    \n- Mongoose\n    \n- Yup (validações)\n    \n- Postman\n    \n- REST API\n    \n\n## **Estrutura Geral da Collection**\n\nCada pasta representa uma entidade e contém:\n\n- **GET /** → Listar todos\n    \n- **GET /:id** → Buscar por ID\n    \n- **POST /** → Criar\n    \n- **PUT /:id** → Atualizar\n    \n- **DELETE /:id** → Remover\n    \n\nTodas as rotas incluem:\n\n- Descrição detalhada\n    \n- Corpo de exemplo (body) com dados válidos\n    \n- URLs completas\n    \n- IDs reais usados nos testes\n    \n\n## **Acertos Realizados Durante o Desenvolvimento**\n\n✔ Correção de IDs inválidos (erro comum usando ObjectId incorreto)  \n✔ Ajuste de rotas inconsistentes  \n✔ Padronização dos schemas Yup  \n✔ Padronização das respostas da API  \n✔ Organização e limpeza de pastas  \n✔ Correção de erros de validação  \n✔ Criação de exemplos para todos os endpoints\n\n## **Erros Identificados e Corrigidos**\n\n- ❌ IDs mal formatados no formato MongoDB\n    \n- ❌ Requests sem body correto\n    \n- ❌ Endpoints faltando documentação\n    \n- ❌ Faltando exemplos para POST/PUT\n    \n- ❌ Entidades sem GET por ID\n    \n- ❌ Projetos sem referências corretas de company/client\n    \n\nTodos esses erros foram corrigidos e documentados.\n\n## **URL BASE DA API**\n\nUse esta URL em TODAS as requisições:\n\n```\nhttp://localhost:3000/api\n\n ```\n\nEndFragment",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "47434548"
+	},
+	"item": [
+		{
+			"name": "companies",
+			"item": [
+				{
+					"name": "CADASTRAR",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Empresa ACAI LTDA\",\r\n  \"cnpj\": \"12.345.678/0001-79\",\r\n  \"address\": \"Rua Principal, 10\",\r\n  \"phone\": \"11999999979\",\r\n  \"email\": \"contato@ACAI.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/companies",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"companies"
+							]
+						},
+						"description": "StartFragment\n\n# **Criar Projeto**\n\n### **URL**\n\n```\nPOST http://localhost:3000/api/projects\n\n ```\n\n### **Descrição**\n\nCria um novo projeto vinculado a uma empresa.  \nO projeto pode incluir cliente, funcionários e datas de execução.\n\n### **Body exemplo**\n\n```\n\n{\n  \"name\": \"Projeto de Reforma\",\n  \"description\": \"Reforma geral da unidade X\",\n  \"company\": \"691f72f92763548768103f8b\",\n  \"client\": \"69204f330c732c1ca57fabc4\",\n  \"employees\": [],\n  \"startDate\": \"2025-11-21\",\n  \"endDate\": \"2025-12-31\",\n  \"status\": \"planned\",\n  \"cnpj\":\"45452122222\"\n}\n\n ```\n\nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "LISTAR",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Empresa DomLele\",\r\n  \"address\": \"Rua das Flores, 123\",\r\n  \"email\": \"contato@domlele.com\",\r\n  \"cnpj\": \"12.345.678/0001-90\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/companies",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"companies"
+							]
+						},
+						"description": "StartFragment\n\n#  **Listar Projetos**\n\n### **URL**\n\n```\nGET http://localhost:3000/api/projects\n\n ```\n\n### **Descrição**\n\nRetorna todos os projetos cadastrados.\n\nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "POR ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/companies/691fa567268f5e2f05af0485",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"companies",
+								"691fa567268f5e2f05af0485"
+							]
+						},
+						"description": "# **Buscar Projeto por ID**\n\n### **URL**\n\n```\nGET http://localhost:3000/api/projects/:id\n\n ```\n\n### **Exemplo real com ID**\n\n```\nGET http://localhost:3000/api/companies/691fa567268f5e2f05af0485\n\n ```\n\nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "ATUALIZAR",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Empresa DomLeleco LTDA - Atualizada\",\r\n  \"cnpj\": \"12.345.678/0001-99\",\r\n  \"address\": \"Rua Secundária, 200\",\r\n  \"phone\": \"11911112222\",\r\n  \"email\": \"novoemail@domlele.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/companies/691fa40d268f5e2f05af047e",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"companies",
+								"691fa40d268f5e2f05af047e"
+							]
+						},
+						"description": "StartFragment\n\n# **Atualizar Projeto**\n\n### **URL**\n\n```\nhttp://localhost:3000/api/companies/691fa40d268f5e2f05af047e\n\n ```\n\n### **Exemplo de body**\n\n```\n{\n  \"name\": \"Empresa DomLeleco LTDA - Atualizada\",\n  \"cnpj\": \"12.345.678/0001-99\",\n  \"address\": \"Rua Secundária, 200\",\n  \"phone\": \"11911112222\",\n  \"email\": \"novoemail@domlele.com\"\n}\n\n ```\n\nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "DELETAR",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/companies/691fa40d268f5e2f05af047e",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"companies",
+								"691fa40d268f5e2f05af047e"
+							]
+						},
+						"description": "StartFragment\n\n# **Remover Projeto**\n\n### **URL**\n\n```\nDELETE http://localhost:3000/api/projects/:id\n\n ```\n\n### **Exemplo real**\n\n```\nDELETEhttp://localhost:3000/api/companies/691fa40d268f5e2f05af047e\n\n ```\n\nEndFragment"
+					},
+					"response": []
+				}
+			],
+			"description": "StartFragment\n\n## **companies**\n\nGerencia os dados das empresas cadastradas no sistema.  \nUma empresa pode conter unidades, funcionários, serviços e clientes.\n\nCampos principais:\n\n- name\n    \n- cnpj\n    \n- address\n    \n- phone\n    \n\nEndFragment"
+		},
+		{
+			"name": "clients",
+			"item": [
+				{
+					"name": "CADASTRAR",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Cliente Exemplo\",\r\n  \"email\": \"cliente@exemplo.com\",\r\n  \"phone\": \"11988887777\",\r\n  \"company\": \"691f72f92763548768103f8b\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/clients",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"clients"
+							]
+						},
+						"description": "StartFragment\n\n# **POST — Criar Cliente**\n\n### **URL**\n\n```\nPOST http://localhost:3000/api/clients\n\n ```\n\n### **Descrição**\n\nCria um novo cliente vinculado a uma empresa.\n\n### **Body (JSON)**\n\n```\n{\n  \"name\": \"Cliente Exemplo\",\n  \"email\": \"cliente@exemplo.com\",\n  \"phone\": \"11988887777\",\n  \"company\": \"691f72f92763548768103f8b\"\n}\n\n ```\n\nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "LISTAR",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/clients",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"clients"
+							]
+						},
+						"description": "StartFragment\n\n# **Listar Todos os Clientes**\n\n### **URL**\n\n```\nGET http://localhost:3000/api/clients\n\n ```\n\n### **Descrição**\n\nRetorna a lista completa de clientes cadastrados.\n\nNenhum body necessário.\n\n  \nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "POR ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/clients/691fcf6b268f5e2f05af04c0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"clients",
+								"691fcf6b268f5e2f05af04c0"
+							]
+						},
+						"description": "StartFragment\n\n# **Buscar Cliente Específico**\n\n### **URL**\n\n```\nGET http://localhost:3000/api/clients/69204f330c732c1ca57fabc4\n\n ```\n\n### **Descrição**\n\nRetorna todos os dados do cliente correspondente ao ID informado.\n\nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "ATUALIZAR",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Cliente Atualizado\",\r\n  \"email\": \"clienteatualizado@exemplo.com\",\r\n  \"phone\": \"11911112222\",\r\n  \"company\": \"691f72f92763548768103f8b\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/clients/691fcf6b268f5e2f05af04c0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"clients",
+								"691fcf6b268f5e2f05af04c0"
+							]
+						},
+						"description": "StartFragment\n\n# **Atualizar Cliente**\n\n### **URL**\n\n```\nPUT http://localhost:3000/api/clients/69204f330c732c1ca57fabc4\n\n ```\n\n### **Descrição**\n\nAtualiza os dados de um cliente existente.\n\n### **Body (JSON)**\n\n```\n{\n  \"name\": \"Cliente Exemplo Atualizado\",\n  \"email\": \"clienteatualizado@exemplo.com\",\n  \"phone\": \"11911112222\",\n  \"company\": \"69204f330c732c1ca57fabc4\"\n}\n\n ```\n\nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/clients/691fcf6b268f5e2f05af04c0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"clients",
+								"691fcf6b268f5e2f05af04c0"
+							]
+						},
+						"description": "StartFragment\n\n# **Excluir Cliente**\n\n### **URL**\n\n```\nDELETE http://localhost:3000/api/clients/69204f330c732c1ca57fabc4\n\n ```\n\n### **Descrição**\n\nRemove o cliente do banco de dados.\n\nEndFragment"
+					},
+					"response": []
+				}
+			],
+			"description": "StartFragment\n\n## **Clients**\n\nO recurso **Clients** representa clientes vinculados a uma empresa.  \nAqui você pode **cadastrar, atualizar, listar, buscar por ID e excluir clientes**.\n\nCada cliente contém:\n\n- **name** (obrigatório)\n    \n- **email**\n    \n- **phone**\n    \n- **company** → ID da empresa à qual o cliente pertence\n    \n\n## **Campos Principais:**\n\n| Campo | Tipo | Obrigatório | Descrição |\n| --- | --- | --- | --- |\n| name | string | ✔️ | Nome do cliente |\n| email | string | ❌ | E‑mail do cliente |\n| phone | string | ❌ | Telefone do cliente |\n| company | string | ✔️ | ID da empresa (ObjectId) |\n\nStartFragment\n\n## **BASE URL:**\n\n```\nhttp://localhost:3000/api/clients\n\n ```\n\nEndFragment"
+		},
+		{
+			"name": "UNITS",
+			"item": [
+				{
+					"name": "CADASTRAR",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Unidade Matriz\",\r\n  \"company\": \"691f72f92763548768103f8b\",\r\n  \"address\": \"Av Central 500\",\r\n  \"phone\": \"1133334444\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/units",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"units"
+							]
+						},
+						"description": "StartFragment\n\n## **Criar Unidade**\n\n**URL:**\n\n```\nhttp://localhost:3000/api/units\n\n ```\n\n### **Descrição profissional**\n\nCria uma nova unidade vinculada a uma empresa.  \nTodos os dados são validados antes de serem salvos.\n\n### **Body (válido):**\n\n```\n{\n  \"name\": \"Unidade Matriz\",\n  \"company\": \"691f72f92763548768103f8b\",\n  \"address\": \"Av Central 500\",\n  \"phone\": \"1133334444\"\n}\n\n ```\n\n### **Possíveis erros**\n\n- `Nome é obrigatório`\n    \n- `ID da empresa é obrigatório`\n    \n- `ID inválido`\n    \n\n  \nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "LISTAR",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/units",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"units"
+							]
+						},
+						"description": "StartFragment\n\n## **Listar Todas as Unidades**\n\n**URL:**\n\n```\nhttp://localhost:3000/api/units\n\n ```\n\n### **Descrição profissional**\n\nRetorna todas as unidades cadastradas, ordenadas por data de criação.\n\nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "Por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/units/691fb188268f5e2f05af0498",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"units",
+								"691fb188268f5e2f05af0498"
+							]
+						},
+						"description": "StartFragment\n\n## **Buscar Unidade específica**\n\n**URL:**\n\n```\nhttp://localhost:3000/api/units/692070340c732c1ca57fac2c\n\n ```\n\n### **Descrição profissional**\n\nRetorna os dados completos de uma unidade específica, incluindo empresa vinculada.\n\nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "ATUALIZAR",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Unidade Atualizada\",\r\n  \"company\": \"691f72f92763548768103f8b\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/units/691fb188268f5e2f05af0498",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"units",
+								"691fb188268f5e2f05af0498"
+							]
+						},
+						"description": "StartFragment\n\n## **Atualizar Unidade**\n\n**URL:**\n\n```\nhttp://localhost:3000/api/units/692070340c732c1ca57fac2c\n\n ```\n\n### **Descrição profissional**\n\nAtualiza parcial ou totalmente os dados da unidade.\n\n### **Body (válido):**\n\n```\n{\n  \"name\": \"Unidade Atualizada\",\n  \"company\": \"691f72f92763548768103f8b\"\n}\n\n ```\n\n### **Possíveis erros**\n\n- `ID inválido`\n    \n- `Unidade não encontrada`\n    \n- `ID da empresa inválido`\n    \n\nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Unidade Atualizada\",\r\n  \"company\": \"691f72f92763548768103f8b\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/units/691fb188268f5e2f05af0498",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"units",
+								"691fb188268f5e2f05af0498"
+							]
+						},
+						"description": "StartFragment\n\n## **Excluir Unidade**\n\n**URL:**\n\n```\nhttp://localhost:3000/api/units/692070340c732c1ca57fac2c\n\n ```\n\n### **Descrição profissional**\n\nRemove a unidade do sistema permanentemente.\n\n### **Possíveis erros**\n\n- `ID inválido`\n    \n- `Unidade não encontrada`\n    \n\nEndFragment"
+					},
+					"response": []
+				}
+			],
+			"description": "StartFragment\n\n# **UNITS**\n\nA pasta **UNITS** permite gerenciar as unidades físicas de uma empresa. Cada unidade pertence obrigatoriamente a uma empresa, podendo conter endereço e telefone.\n\n### **Atributos**\n\n| Campo | Tipo | Obrigatório | Descrição |\n| --- | --- | --- | --- |\n| name | string | ✔️ | Nome da unidade |\n| company | string (ObjectId) | ✔️ | ID da empresa dona da unidade |\n| address | string | ❌ | Endereço físico |\n| phone | string | ❌ | Telefone de contato |\n\n### **Rotas disponíveis**\n\n- **POST** `/api/units`\n    \n- **GET** `/api/units`\n    \n- **GET por ID** `/api/units/:id`\n    \n- **PUT** `/api/units/:id`\n    \n- **DELETE** `/api/units/:id`\n    \n\nEndFragment"
+		},
+		{
+			"name": "DEPARTMENTS",
+			"item": [
+				{
+					"name": "CADASTRAR",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Departamento Administrativo\",\r\n  \"unit\": \"6920e1f31234567890123456\",\r\n  \"description\": \"Setor responsável pela administração interna\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/departments",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"departments"
+							]
+						},
+						"description": "StartFragment\n\n# **Criar Departamento**\n\n### **URL**\n\n```\nPOST http://localhost:3000/api/departments\n\n ```\n\n### **Body (exemplo válido)**\n\n```\n{\n  \"name\": \"Departamento Administrativo\",\n  \"unit\": \"692070340c732c1ca57fac2c\",\n  \"description\": \"Setor responsável pela administração interna\"\n}\n\n ```\n\nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "LISTAR",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/departments",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"departments"
+							]
+						},
+						"description": "StartFragment\n\n# **Listar Departamentos**\n\n### **URL**\n\n```\nGET http://localhost:3000/api/departments\n\n ```\n\nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "POR ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"description": "StartFragment\n\n# **Buscar Departamento por ID**\n\n### **URL**\n\n```\nGET http://localhost:3000/api/departments/{id}\n\n ```\n\n### **Exemplo com ID real do banco**\n\n```\nGET http://localhost:3000/api/departments/692071b70c732c1ca57fac33\n\n ```\n\nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "ATUALIZAR",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Departamento Administrativo - Atualizado\",\r\n  \"unit\": \"6920e1f31234567890123456\",\r\n  \"description\": \"Descrição atualizada do setor\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/departments/691fd11f268f5e2f05af04d0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"departments",
+								"691fd11f268f5e2f05af04d0"
+							]
+						},
+						"description": "StartFragment\n\n# **Atualizar Departamento por ID**\n\n### **URL**\n\n```\nPUT http://localhost:3000/api/departments/{id}\n\n ```\n\n### **Exemplo com ID real**\n\n```\nPUT http://localhost:3000/api/departments/692071b70c732c1ca57fac33\n\n ```\n\n### **Body (exemplo válido)**\n\n```\n{\n  \"name\": \"Departamento Administrativo Atualizado\",\n  \"unit\": \"692070340c732c1ca57fac2c\",\n  \"description\": \"Atualização do setor para refletir nova estrutura\"\n}\n\n ```\n\nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "DELETAR",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Departamento Administrativo - Atualizado\",\r\n  \"unit\": \"6920e1f31234567890123456\",\r\n  \"description\": \"Descrição atualizada do setor\"\r\n}\r\n"
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/departments/691fd11f268f5e2f05af04d0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"departments",
+								"691fd11f268f5e2f05af04d0"
+							]
+						},
+						"description": "StartFragment\n\n# **Remover Departamento por ID**\n\n### **URL**\n\n```\nDELETE http://localhost:3000/api/departments/{id}\n\n ```\n\n### **Exemplo com ID real**\n\n```\nDELETE http://localhost:3000/api/departments/692071b70c732c1ca57fac33\n\n ```\n\nEndFragment"
+					},
+					"response": []
+				}
+			],
+			"description": "StartFragment\n\n# **DEPARTMENTS**\n\n##  **Overview da Pasta (coloque no Postman → pasta \"DEPARTMENTS\")**\n\nEsta pasta contém todos os endpoints relacionados aos Departamentos da empresa.  \nUm departamento representa um setor pertencente a uma Unidade (Unit), podendo ter descrição e relacionamentos internos.\n\n### **Ações disponíveis**\n\n- Criar departamento\n    \n- Listar departamentos\n    \n- Buscar por ID\n    \n- Atualizar departamento\n    \n- Deletar departamento\n    \n\n### **URL Base**\n\n```\nhttp://localhost:3000/api/departments\n\n ```\n\nEndFragment"
+		},
+		{
+			"name": "EMPLOYEES",
+			"item": [
+				{
+					"name": "CADASTRAR",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"firstName\": \"João\",\r\n  \"lastName\": \"Silva\",\r\n  \"email\": \"joao.silva@empresa.com\",\r\n  \"cpf\": \"12345678901\",\r\n  \"phone\": \"11988887777\",\r\n  \"company\": \"691f72f92763548768103f8b\",\r\n  \"unit\": \"6920e1f31234567890123456\",\r\n  \"department\": \"6920e1f99876543210123456\",\r\n  \"role\": \"Analista de Sistemas\",\r\n  \"active\": true\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/employees",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"employees"
+							]
+						},
+						"description": "StartFragment\n\n#  **Criar Funcionário**\n\n### **URL**\n\n```\nhttp://localhost:3000/api/employees\n\n ```\n\n### **Descrição**\n\nCria um novo funcionário vinculado a uma empresa, unidade e departamento.  \nTodos os campos obrigatórios devem ser enviados.\n\n### **Body Exemplo (válido)**\n\n```\n{\n  \"firstName\": \"João\",\n  \"lastName\": \"Silva\",\n  \"email\": \"joao.silva@empresa.com\",\n  \"cpf\": \"12345678941\",\n  \"phone\": \"11988887777\",\n  \"company\": \"691f72f92763548768103f8b\",\n  \"unit\": \"6920e1f31234567890123456\",\n  \"department\": \"6920e1f99876543210123456\",\n  \"role\": \"Analista de Sistemas\",\n  \"active\": true\n}\n\n ```\n\n  \nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "LISTAR",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/employees",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"employees"
+							]
+						},
+						"description": "StartFragment\n\n#  **Listar Todos os Funcionários**\n\n### **URL**\n\n```\nhttp://localhost:3000/api/employees\n\n ```\n\n### **Descrição**\n\nRetorna todos os funcionários cadastrados no sistema.\n\nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "POR ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/employees/691fd403268f5e2f05af04d8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"employees",
+								"691fd403268f5e2f05af04d8"
+							]
+						},
+						"description": "StartFragment\n\n#  **Buscar Funcionário por ID**\n\n### **URL**\n\n```\nhttp://localhost:3000/api/employees/692074290c732c1ca57fac40\n\n ```\n\n### **Descrição**\n\nRetorna os dados completos de um funcionário específico.\n\nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "ATUALIZAR",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"firstName\": \"João Carlos\",\r\n  \"lastName\": \"Silva Santos\",\r\n  \"email\": \"joao.carlos@empresa.com\",\r\n  \"cpf\": \"12345678901\",\r\n  \"phone\": \"11999996666\",\r\n  \"company\": \"691f72f92763548768103f8b\",\r\n  \"unit\": \"6920e1f31234567890123456\",\r\n  \"department\": \"6920e1f99876543210123456\",\r\n  \"role\": \"Coordenador de TI\",\r\n  \"active\": true\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/employees/691fd403268f5e2f05af04d8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"employees",
+								"691fd403268f5e2f05af04d8"
+							]
+						},
+						"description": "StartFragment\n\n#  **Atualizar Funcionário**\n\n### **URL**\n\n```\nhttp://localhost:3000/api/employees/692074290c732c1ca57fac40\n\n ```\n\n### **Descrição**\n\nAtualiza qualquer informação do funcionário, mantendo o vínculo com empresa/unidade/departamento.\n\n### **Body Exemplo (válido)**\n\n```\n{\n  \"firstName\": \"João Carlos\",\n  \"lastName\": \"Silva Santos\",\n  \"email\": \"joao.carlos@empresa.com\",\n  \"cpf\": \"12345678901\",\n  \"phone\": \"11999996666\",\n  \"company\": \"691f72f92763548768103f8b\",\n  \"unit\": \"6920e1f31234567890123456\",\n  \"department\": \"6920e1f99876543210123456\",\n  \"role\": \"Coordenador de TI\",\n  \"active\": true\n}\n\n ```\n\nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "DELETAR",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"firstName\": \"João Carlos\",\r\n  \"lastName\": \"Silva Santos\",\r\n  \"email\": \"joao.carlos@empresa.com\",\r\n  \"cpf\": \"12345678901\",\r\n  \"phone\": \"11999996666\",\r\n  \"company\": \"691f72f92763548768103f8b\",\r\n  \"unit\": \"6920e1f31234567890123456\",\r\n  \"department\": \"6920e1f99876543210123456\",\r\n  \"role\": \"Coordenador de TI\",\r\n  \"active\": true\r\n}\r\n"
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/employees/691fd403268f5e2f05af04d8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"employees",
+								"691fd403268f5e2f05af04d8"
+							]
+						},
+						"description": "StartFragment\n\n# **Remover Funcionário**\n\n### **URL**\n\n```\nhttp://localhost:3000/api/employees/:id\n\n ```\n\n### **Descrição**\n\nRemove definitivamente um funcionário do banco de dados.\n\nEndFragment"
+					},
+					"response": []
+				}
+			],
+			"description": "StartFragment\n\n#  **EMPLOYEES**\n\n##  **Descrição do Recurso**\n\nO recurso **Employees** gerencia todos os funcionários cadastrados no sistema.  \nPermite criar, listar, buscar por ID, atualizar e remover funcionários vinculados a **Empresa**, **Unidade** e **Departamento**.\n\nCada funcionário possui dados pessoais e organizacionais que ajudam a estruturar a hierarquia da empresa.\n\n## **Atributos do Funcionário**\n\n| Campo | Tipo | Obrigatório | Descrição |\n| --- | --- | --- | --- |\n| firstName | string | ✔️ | Primeiro nome do funcionário |\n| lastName | string | ✔️ | Sobrenome |\n| email | string | ✔️ | Email corporativo |\n| cpf | string | ✔️ | Documento CPF (único) |\n| phone | string | ✔️ | Telefone do funcionário |\n| company | ObjectId | ✔️ | ID da empresa |\n| unit | ObjectId | ✔️ | ID da unidade |\n| department | ObjectId | ✔️ | ID do departamento |\n| role | string | ✔️ | Cargo |\n| active | boolean | ✔️ | Situação (ativo/inativo) |\n\n---\n\n## **Rotas Implementadas**\n\n- **POST /api/employees** – Criação de funcionário\n    \n- **GET /api/employees** – Listar todos\n    \n- **GET /api/employees/:id** – Buscar por ID\n    \n- **PUT /api/employees/:id** – Atualizar dados\n    \n- **DELETE /api/employees/:id** – Remover funcionário\n    \n\n  \nEndFragment"
+		},
+		{
+			"name": "SERVICES",
+			"item": [
+				{
+					"name": "CADASTRAR",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"Serviço de Limpeza\",\r\n  \"description\": \"Limpeza geral da unidade\",\r\n  \"price\": 120,\r\n  \"company\": \"691f72f92763548768103f8b\",\r\n  \"unit\": \"691fd0d8268f5e2f05af04cb\",\r\n  \"department\": \"691fd116268f5e2f05af04ce\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/services",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"services"
+							]
+						},
+						"description": "StartFragment\n\n# **Criar Serviço**\n\n### **URL**\n\n```\nhttp://localhost:3000/api/services\n\n ```\n\n### **Descrição**\n\nCria um novo serviço/contrato vinculado à empresa e opcionalmente a uma unidade e departamento.\n\n### **Body (Exemplo válido)**\n\n```\n{\n  \"title\": \"Serviço de Limpeza\",\n  \"description\": \"Limpeza geral da unidade\",\n  \"price\": 120,\n  \"company\": \"691f72f92763548768103f8b\",\n  \"unit\": \"691fd0d8268f5e2f05af04cb\",\n  \"department\": \"691fd116268f5e2f05af04ce\"\n}\n\n ```\n\n  \nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "LISTAR",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/services",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"services"
+							]
+						},
+						"description": "StartFragment\n\n# **Listar Todos os Serviços**\n\n### **URL**\n\n```\nhttp://localhost:3000/api/services\n\n ```\n\n### **Descrição**\n\nRetorna a lista completa de todos os serviços cadastrados.\n\n  \nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "POR ID",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"Serviço de Limpeza\",\r\n  \"description\": \"Limpeza geral da unidade\",\r\n  \"price\": 120,\r\n  \"company\": \"691f72f92763548768103f8b\",\r\n  \"unit\": \"691fd0d8268f5e2f05af04cb\",\r\n  \"department\": \"691fd116268f5e2f05af04ce\"\r\n}\r\n"
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/services/691fd7e7268f5e2f05af04e9",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"services",
+								"691fd7e7268f5e2f05af04e9"
+							]
+						},
+						"description": "StartFragment\n\n# **Buscar um Serviço Específico**\n\n### **URL**\n\n```\nhttp://localhost:3000/api/services/691fd7e7268f5e2f05af04e9\n\n ```\n\n### **Descrição**\n\nRetorna os dados de um serviço específico utilizando seu ID.\n\n### **Exemplo de resposta**\n\n```\n{\n  \"_id\": \"691fd7e7268f5e2f05af04e9\",\n  \"title\": \"Serviço de Limpeza\",\n  \"description\": \"Limpeza geral da unidade\",\n  \"price\": 120,\n  \"company\": {\n    \"_id\": \"691f72f92763548768103f8b\",\n    \"name\": \"Empresa Teste\",\n    \"cnpj\": \"12345678000100\",\n    \"address\": \"Rua X, 123\",\n    \"phone\": null,\n    \"createdAt\": \"2025-11-20T19:58:49.787Z\",\n    \"__v\": 0\n  },\n  \"createdAt\": \"2025-11-21T03:09:27.217Z\",\n  \"__v\": 0\n}\n\n ```\n\nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "ATUALIZAR",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"Serviço de Limpeza Avançada\",\r\n  \"description\": \"Limpeza completa incluindo áreas externas\",\r\n  \"price\": 180,\r\n  \"company\": \"691f72f92763548768103f8b\",\r\n  \"unit\": \"691fd0d8268f5e2f05af04cb\",\r\n  \"department\": \"691fd116268f5e2f05af04ce\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/services/691fd8a0268f5e2f05af04f1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"services",
+								"691fd8a0268f5e2f05af04f1"
+							]
+						},
+						"description": "StartFragment\n\n# **Atualizar Serviço**\n\n### **URL**\n\n```\nhttp://localhost:3000/api/services/691fd7e7268f5e2f05af04e9\n\n ```\n\n### **Descrição**\n\nAtualiza os dados de um serviço existente.\n\n### **Body (Exemplo válido)**\n\n```\n{\n  \"title\": \"Serviço de Limpeza Avançada\",\n  \"description\": \"Limpeza completa incluindo áreas externas\",\n  \"price\": 180,\n  \"company\": \"691f72f92763548768103f8b\",\n  \"unit\": \"691fd0d8268f5e2f05af04cb\",\n  \"department\": \"691fd116268f5e2f05af04ce\"\n}\n\n ```\n\nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "DELETAR",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"Serviço de Limpeza Avançada\",\r\n  \"description\": \"Limpeza completa incluindo áreas externas\",\r\n  \"price\": 180,\r\n  \"company\": \"691f72f92763548768103f8b\",\r\n  \"unit\": \"691fd0d8268f5e2f05af04cb\",\r\n  \"department\": \"691fd116268f5e2f05af04ce\"\r\n}\r\n"
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/services/691fd8a0268f5e2f05af04f1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"services",
+								"691fd8a0268f5e2f05af04f1"
+							]
+						},
+						"description": "StartFragment\n\n# **Remover Funcionário**\n\n### **URL**\n\n```\nhttp://localhost:3000/api/services/:id\n\n ```\n\n### **Descrição**\n\nRemove definitivamente um funcionário do banco de dados.\n\nEndFragment"
+					},
+					"response": []
+				}
+			],
+			"description": "StartFragment\n\n# **SERVICES / CONTRACTS**\n\n##  **OVERVIEW DA PASTA —** _**SERVICES / CONTRACTS**_\n\nEsta pasta contém todos os endpoints responsáveis pela gestão de **Serviços/Contratos** da aplicação.  \nUm “Service/Contract” registra um serviço executado para uma empresa, podendo estar vinculado a uma unidade e departamento.\n\n### **Campos principais**\n\n| Campo | Tipo | Obrigatório | Descrição |\n| --- | --- | --- | --- |\n| title | string | ✔️ | Nome do serviço/contrato |\n| description | string | opcional | Detalhes sobre o serviço |\n| price | number | ✔️ | Valor do serviço |\n| company | ObjectId | ✔️ | Empresa responsável |\n| unit | ObjectId | opcional | Unidade em que o serviço é prestado |\n| department | ObjectId | opcional | Departamento vinculado |\n\n### **Endpoints incluídos**\n\n- **POST /api/services** – Criação de um novo serviço\n    \n- **GET /api/services** – Listar todos os serviços\n    \n- **GET /api/services/:id** – Consultar serviço por ID\n    \n- **PUT /api/services/:id** – Atualizar serviço existente\n    \n\nEndFragment"
+		},
+		{
+			"name": "CONTRACTS",
+			"item": [
+				{
+					"name": "CADASTRAR",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"Contrato de Prestação de Serviços\",\r\n  \"company\": \"691f72f92763548768103f8b\",\r\n  \"client\": \"69204f330c732c1ca57fabc4\",\r\n  \"services\": [\r\n    \"691fd7e7268f5e2f05af04e9\",\r\n    \"691fd8a0268f5e2f05af04f1\"\r\n  ],\r\n  \"totalValue\": 3500,\r\n  \"signedAt\": \"2025-11-21\",\r\n  \"expiresAt\": \"2026-11-21\",\r\n  \"status\": \"active\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/contracts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"contracts"
+							]
+						},
+						"description": "StartFragment\n\n## **Criar Contrato**\n\n**URL:**  \n`http://localhost:3000/api/contracts`\n\n**Body (JSON):**\n\n```\n{\n  \"title\": \"Contrato de Prestação de Serviços\",\n  \"company\": \"691f72f92763548768103f8b\",\n  \"client\": \"69204f330c732c1ca57fabc4\",\n  \"services\": [\n    \"691fd7e7268f5e2f05af04e9\",\n    \"691fd8a0268f5e2f05af04f1\"\n  ],\n  \"totalValue\": 3500,\n  \"signedAt\": \"2025-11-21\",\n  \"expiresAt\": \"2026-11-21\",\n  \"status\": \"active\"\n}\n\n ```\n\n  \nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "LISTAR",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/contracts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"contracts"
+							]
+						},
+						"description": "StartFragment\n\n## **Listar Todos os Contratos**\n\n**URL:**  \n`http://localhost:3000/api/contracts`\n\nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "POR ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/contracts/6920504b0c732c1ca57fabca",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"contracts",
+								"6920504b0c732c1ca57fabca"
+							]
+						},
+						"description": "StartFragment\n\n## **Obter Contrato por ID**\n\n**URL:**  \n`http://localhost:3000/api/contracts/692050550c732c1ca57fabcc`\n\n  \nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "ATUALIZAR",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"Contrato Atualizado\",\r\n  \"company\": \"691f72f92763548768103f8b\",\r\n  \"client\": \"69204f330c732c1ca57fabc4\",\r\n  \"services\": [\r\n    \"691fd7e7268f5e2f05af04e9\",\r\n    \"691fd8a0268f5e2f05af04f1\"\r\n  ],\r\n  \"totalValue\": 500,\r\n  \"signedAt\": \"2025-11-21\",\r\n  \"expiresAt\": \"2026-11-21\",\r\n  \"status\": \"active\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/contracts/6920504b0c732c1ca57fabca",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"contracts",
+								"6920504b0c732c1ca57fabca"
+							]
+						},
+						"description": "StartFragment\n\n##  **Atualizar Contrato por ID**\n\n**URL:**  \n`http://localhost:3000/api/contracts/692050550c732c1ca57fabcc`\n\n**Body (JSON):**\n\n```\n{\n  \"title\": \"Contrato Atualizado\",\n  \"company\": \"691f72f92763548768103f8b\",\n  \"client\": \"69204f330c732c1ca57fabc4\",\n  \"services\": [\n    \"691fd7e7268f5e2f05af04e9\",\n    \"691fd8a0268f5e2f05af04f1\"\n  ],\n  \"totalValue\": 500,\n  \"signedAt\": \"2025-11-21\",\n  \"expiresAt\": \"2026-11-21\",\n  \"status\": \"active\"\n}\n\n ```\n\nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "DELETAR",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/contracts/6920504b0c732c1ca57fabca",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"contracts",
+								"6920504b0c732c1ca57fabca"
+							]
+						},
+						"description": "StartFragment\n\n##  **Remover Contrato por ID**\n\n**URL:**  \n`http://localhost:3000/api/contracts/692050550c732c1ca57fabcc`\n\nEndFragment"
+					},
+					"response": []
+				}
+			],
+			"description": "StartFragment\n\n# **Overview profissional para o Postman**\n\n### **Descrição do Recurso**\n\nO recurso **Contracts** gerencia contratos entre empresas, clientes e serviços prestados.  \nCada contrato possui título, serviços vinculados, valores financeiros, datas e status.\n\n### **Campos principais**\n\n- **title**: Nome do contrato\n    \n- **company**: ID da empresa responsável\n    \n- **client**: ID do cliente associado\n    \n- **services**: Lista de serviços incluídos no contrato\n    \n- **totalValue**: Valor total do contrato\n    \n- **signedAt**: Data de assinatura\n    \n- **expiresAt**: Data de expiração\n    \n- **status**: `active | pending | cancelled | expired`\n    \n\nEndFragment"
+		},
+		{
+			"name": "INVOICES",
+			"item": [
+				{
+					"name": "CADASTRAR",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"invoiceNumber\": \"FAT-0001\",\r\n  \"contract\": \"6920504b0c732c1ca57fabca\",\r\n  \"client\": \"69204f330c732c1ca57fabc4\",\r\n  \"issueDate\": \"2025-11-21\",\r\n  \"dueDate\": \"2025-12-21\",\r\n  \"amount\": 3500,\r\n  \"status\": \"pending\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/invoices",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"invoices"
+							]
+						},
+						"description": "StartFragment\n\n# **Criar Invoice**\n\n**URL:**\n\n```\nPOST http://localhost:3000/api/invoices\n\n ```\n\n**Descrição:**  \nCria uma nova fatura vinculada a um contrato existente, cliente e valores.\n\n**Body Exemplo (válido):**\n\n```\n{\n  \"invoiceNumber\": \"FAT-0001\",\n  \"contract\": \"6920504b0c732c1ca57fabca\",\n  \"client\": \"69204f330c732c1ca57fabc4\",\n  \"issueDate\": \"2025-11-21\",\n  \"dueDate\": \"2025-12-21\",\n  \"amount\": 3500,\n  \"status\": \"pending\"\n}\n\n ```\n\nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "LISTAR",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/invoices",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"invoices"
+							]
+						},
+						"description": "StartFragment\n\n# **GET – Listar Todas as Invoices**\n\n**URL:**\n\n```\nGET http://localhost:3000/api/invoices\n\n ```\n\n**Descrição:**  \nRetorna todas as faturas cadastradas no sistema.\n\nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "POR ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/invoices/692056680c732c1ca57fabe1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"invoices",
+								"692056680c732c1ca57fabe1"
+							]
+						},
+						"description": "StartFragment\n\n# **Buscar Invoice pelo ID**\n\n**URL:**\n\n```\nGET http://localhost:3000/api/invoices/69207b000c732c1ca57fac65\n\n ```\n\n**Descrição:**  \nRetorna os dados completos da fatura especificada pelo ID.\n\n**Exemplo de Resposta:**\n\n```\n{\n  \"invoiceNumber\": \"FAT-0001\",\n  \"contract\": \"692050550c732c1ca57fabcc\",\n  \"client\": \"69204f330c732c1ca57fabc4\",\n  \"issueDate\": \"2025-11-21T03:00:00.000Z\",\n  \"dueDate\": \"2025-12-21T03:00:00.000Z\",\n  \"amount\": 3500,\n  \"status\": \"pending\"\n}\n\n ```\n\n  \nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "ATUALIZAR",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"invoiceNumber\": \"FAT-0001\",\r\n  \"contract\": \"692050550c732c1ca57fabcc\",\r\n  \"client\": \"69204f330c732c1ca57fabc4\",\r\n  \"issueDate\": \"2025-11-21T03:00:00.000Z\",\r\n  \"dueDate\": \"2025-12-21T03:00:00.000Z\",\r\n  \"amount\": 3500,\r\n  \"status\": \"pending\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/invoices/692056680c732c1ca57fabe1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"invoices",
+								"692056680c732c1ca57fabe1"
+							]
+						},
+						"description": "StartFragment\n\n# **Atualizar Invoice**\n\n**URL:**\n\n```\nPUT http://localhost:3000/api/invoices/69207b000c732c1ca57fac65\n\n ```\n\n**Descrição:**  \nAtualiza os dados da fatura já existente.\n\n**Body Exemplo (válido):**\n\n```\n{\n  \"invoiceNumber\": \"FAT-0001\",\n  \"contract\": \"692050550c732c1ca57fabcc\",\n  \"client\": \"69204f330c732c1ca57fabc4\",\n  \"issueDate\": \"2025-11-21\",\n  \"dueDate\": \"2025-12-21\",\n  \"amount\": 3500,\n  \"status\": \"pending\"\n}\n\n ```\n\n  \nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "DELETAR",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/invoices/692056680c732c1ca57fabe1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"invoices",
+								"692056680c732c1ca57fabe1"
+							]
+						},
+						"description": "StartFragment\n\n# **Deletar Invoice**\n\n**URL:**\n\n```\nDELETE http://localhost:3000/api/invoices/69207b000c732c1ca57fac65\n\n ```\n\n**Descrição:**  \nRemove a fatura correspondente ao ID informado.\n\nEndFragment"
+					},
+					"response": []
+				}
+			],
+			"description": "StartFragment\n\n## **invoices**\n\nFaturas emitidas a partir de contratos.\n\nCampos principais:\n\n- invoiceNumber\n    \n- client\n    \n- contract\n    \n- amount\n    \n- status\n    \n\nEndFragment"
+		},
+		{
+			"name": "PAYMENTS",
+			"item": [
+				{
+					"name": "CADASTRAR",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"invoice\": \"692056680c732c1ca57fabe1\",\r\n  \"employee\": \"691fd403268f5e2f05af04d8\",\r\n  \"amount\": 3500,\r\n  \"method\": \"pix\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/payments",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"payments"
+							]
+						},
+						"description": "StartFragment\n\n## **Criar Pagamento**\n\n**URL:**\n\n```\nhttp://localhost:3000/api/payments\n\n ```\n\n### 📘 **Descrição**\n\nCria um novo pagamento associado a uma fatura e a um funcionário responsável.\n\n### **Body (Exemplo válido)**\n\n```\n{\n  \"invoice\": \"692056680c732c1ca57fabe1\",\n  \"employee\": \"691fd403268f5e2f05af04d8\",\n  \"amount\": 3500,\n  \"method\": \"pix\"\n}\n\n ```\n\n  \nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "LISTAR",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/payments",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"payments"
+							]
+						},
+						"description": "StartFragment\n\n## **Listar Todos os Pagamentos**\n\n**URL:**\n\n```\nhttp://localhost:3000/api/payments\n\n ```\n\n### 📝 **Descrição**\n\nRetorna a lista completa de pagamentos registrados no sistema.\n\nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "POR ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/payments/69205af80c732c1ca57fac00",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"payments",
+								"69205af80c732c1ca57fac00"
+							]
+						},
+						"description": "StartFragment\n\n## **Buscar Pagamento por ID**\n\n**URL:**\n\n```\nhttp://localhost:3000/api/payments/69205af80c732c1ca57fac00\n\n ```\n\n### **Descrição**\n\nBusca um pagamento específico pelo seu ID.\n\n**Resposta (exemplo real fornecido)**\n\n```\n{\n  \"invoice\": \"692056680c732c1ca57fabe1\",\n  \"employee\": \"691fd403268f5e2f05af04d8\",\n  \"amount\": 3500,\n  \"method\": \"cartao\"\n}\n\n ```\n\n  \nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "ATUALIZAR",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"invoice\": \"692056680c732c1ca57fabe1\",\r\n  \"employee\": \"691fd403268f5e2f05af04d8\",\r\n  \"amount\": 3500,\r\n  \"method\": \"cartao\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/payments/69205af80c732c1ca57fac00",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"payments",
+								"69205af80c732c1ca57fac00"
+							]
+						},
+						"description": "StartFragment\n\n## **Atualizar Pagamento**\n\n**URL:**\n\n```\nhttp://localhost:3000/api/payments/69205af80c732c1ca57fac00\n\n ```\n\n###  **Descrição**\n\nAtualiza os dados de um pagamento existente.\n\n### **Body (Exemplo válido)**\n\n```\n{\n  \"invoice\": \"692056680c732c1ca57fabe1\",\n  \"employee\": \"691fd403268f5e2f05af04d8\",\n  \"amount\": 3500,\n  \"method\": \"cartao\"\n}\n\n ```\n\nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "DELETAR",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/payments/69205af80c732c1ca57fac00",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"payments",
+								"69205af80c732c1ca57fac00"
+							]
+						},
+						"description": "StartFragment\n\n## **Remover Pagamento**\n\n**URL:**\n\n```\nhttp://localhost:3000/api/payments/69205af80c732c1ca57fac00\n\n ```\n\n### **Descrição**\n\nRemove permanentemente um pagamento do sistema.\n\nEndFragment"
+					},
+					"response": []
+				}
+			],
+			"description": "StartFragment\n\n## **payments**\n\nPagamentos realizados para faturas.\n\nCampos principais:\n\n- invoiceNumber\n    \n- client\n    \n- amount\n    \n- status\n    \n\nEndFragment"
+		},
+		{
+			"name": "PROJECTS",
+			"item": [
+				{
+					"name": "CADASTRAR",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Projeto de Reforma\",\r\n  \"description\": \"Reforma geral da unidade X\",\r\n  \"company\": \"691f72f92763548768103f8b\",\r\n  \"client\": \"69204f330c732c1ca57fabc4\",\r\n  \"employees\": [\"691fd403268f5e2f05af04d8\"],\r\n  \"startDate\": \"2025-11-21\",\r\n  \"endDate\": \"2025-12-31\",\r\n  \"status\": \"planned\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/projects",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"projects"
+							]
+						},
+						"description": "StartFragment\n\n#  **Criar Projeto**\n\n### **Endpoint**\n\n```\nPOST /api/projects\n\n ```\n\n### **Descrição**\n\nCria um novo projeto vinculando empresa, cliente e funcionários participantes.\n\n### **Body Exemplo (válido)**\n\n```\n{\n  \"name\": \"Projeto de Reforma\",\n  \"description\": \"Reforma geral da unidade X\",\n  \"company\": \"691f72f92763548768103f8b\",\n  \"client\": \"69204f330c732c1ca57fabc4\",\n  \"employees\": [\"691fd403268f5e2f05af04d8\"],\n  \"startDate\": \"2025-11-21\",\n  \"endDate\": \"2025-12-31\",\n  \"status\": \"planned\"\n}\n\n ```\n\nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "LISTAR",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/projects",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"projects"
+							]
+						},
+						"description": "StartFragment\n\n#  **Listar Todos os Projetos**\n\n### **Endpoint**\n\n```\nGET /api/projects\n\n ```\n\n### **Descrição**\n\nRetorna todos os projetos cadastrados no sistema.\n\nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "POR ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/projects/69205e340c732c1ca57fac0d",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"projects",
+								"69205e340c732c1ca57fac0d"
+							]
+						},
+						"description": "StartFragment\n\n# **Detalhar um Projeto**\n\n### **Endpoint**\n\n```\nGET /api/projects/:id\n\n ```\n\n### **Exemplo real do seu banco**\n\n```\nGET http://localhost:3000/api/projects/69205e340c732c1ca57fac0d\n\n ```\n\nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "ATUALIZAR",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Projeto de Reforma Atualizado\",\r\n  \"description\": \"Reforma completa – etapa 2\",\r\n  \"company\": \"691f72f92763548768103f8b\",\r\n  \"client\": \"69204f330c732c1ca57fabc4\",\r\n  \"employees\": [\"691fd403268f5e2f05af04d8\"],\r\n  \"startDate\": \"2025-11-21\",\r\n  \"endDate\": \"2026-01-10\",\r\n  \"status\": \"active\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/projects/69205e340c732c1ca57fac0d",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"projects",
+								"69205e340c732c1ca57fac0d"
+							]
+						},
+						"description": "StartFragment\n\n#  **Atualizar Projeto**\n\n### **Endpoint**\n\n```\nPUT /api/projects/:id\n\n ```\n\n### **Exemplo real**\n\n```\nhttp://localhost:3000/api/projects/69205e340c732c1ca57fac0d\n\n ```\n\n### **Body Exemplo (válido)**\n\n```\n{\n  \"name\": \"Projeto de Reforma Atualizado\",\n  \"description\": \"Reforma completa – etapa 2\",\n  \"company\": \"691f72f92763548768103f8b\",\n  \"client\": \"69204f330c732c1ca57fabc4\",\n  \"employees\": [\"691fd403268f5e2f05af04d8\"],\n  \"startDate\": \"2025-11-21\",\n  \"endDate\": \"2026-01-10\",\n  \"status\": \"active\"\n}\n\n ```\n\n  \nEndFragment"
+					},
+					"response": []
+				},
+				{
+					"name": "DELETAR",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/projects/69205e340c732c1ca57fac0d",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"projects",
+								"69205e340c732c1ca57fac0d"
+							]
+						},
+						"description": "StartFragment\n\n# **Remover Projeto**\n\nCaso sua API permita remover projetos:\n\n### **Endpoint**\n\n```\nDELETE /api/projects/:id\n\n ```\n\nEndFragment"
+					},
+					"response": []
+				}
+			],
+			"description": "StartFragment\n\n## **projects**\n\nGerencia projetos da empresa.\n\nCampos principais:\n\n- name\n    \n- description\n    \n- company\n    \n- client\n    \n- employees\\[\\]\n    \n- startDate\n    \n- endDate\n    \n- status\n    \n\nEndFragment"
+		}
+	]
+}
