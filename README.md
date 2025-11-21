@@ -18,6 +18,32 @@ Projeto criado em colaboração entre os desenvolvedores: **@aleesousa, @leocsas
 
 ---
 
+## Explicação e Descrição do Sistema
+
+A API Empresa é um sistema REST completo desenvolvido para gerenciar informações corporativas, incluindo departamentos, cargos, funcionários, projetos e tarefas. O objetivo é simular um ambiente empresarial real, com relações entre entidades e validação de dados, utilizando práticas modernas de desenvolvimento backend.
+
+A API permite operações de CRUD, validações com Yup, relacionamentos entre collections com Mongoose, e persistência no MongoDB Atlas.
+
+---
+
+## Funcionalidades Implementadas
+
+Cadastro, listagem, atualização e exclusão de Departamentos
+
+CRUD de Cargos
+
+CRUD de Funcionários com relacionamento para Cargo e Departamento
+
+CRUD de Projetos relacionados a Funcionários
+
+CRUD de Tarefas relacionadas a Projetos e Funcionários
+
+Validação de dados com Yup em todas as rotas
+
+Uso de populate para retorno automático de documentos relacionados
+
+---
+
 ## Estrutura do Projeto
 
 API-EMPRESA/ 
@@ -211,6 +237,22 @@ DELETE /units/:id → Remove unidade
 
 ---
 
+## Comunicação com o Banco de Dados
+
+A API utiliza Mongoose para comunicação com o MongoDB Atlas, permitindo:
+
+criação de schemas
+
+validação e tipos de dados
+
+criação automática de collections
+
+relacionamentos com ref
+
+consultas usando populate()
+
+---
+
 ## Organização no GitHub
 
 **Issues detalhadas para cada etapa:**
@@ -226,6 +268,12 @@ Documentação
 Commits organizados e colaborativos
 
 Branch principal (main) sempre atualizada
+
+---
+
+## Diagrama de modelagem
+
+![Diagrama da API](./docs/diagrama.png)
 
 ---
 
